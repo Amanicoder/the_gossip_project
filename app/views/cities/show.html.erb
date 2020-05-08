@@ -1,0 +1,18 @@
+<div class="container py-3 text-center">
+  <h1>Voici les potins de la ville "<%= City.find(params[:id]).name %>":</h1>
+  <br>
+  <div class="cards">
+    <% Gossip.all.select { |gossip| gossip.user.city.id == City.find(params[:id]).id
+    }.each do |gossip| %>
+      <div class="card m-3 border-primary rounded">
+        <div class="card-body" style="background-color: pink">
+          <h5 class="card-title"><%= gossip.title %></h5>
+          <h6 class="card-subtitle m-3 text-muted">Gossip n°<%= gossip.id %>, de <%= link_to gossip.user.first_name, user_path(gossip.user.id)%></h6>
+          <a href="<%= gossip_path(gossip.id)%>" class= "card-link"> lien du gossip <a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <a href="/">Retourner à la page des potins</a>
+</div>

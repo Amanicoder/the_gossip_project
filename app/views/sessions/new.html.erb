@@ -1,0 +1,18 @@
+
+<h2> Nouvelle session</h2>
+<%= form_with(model: [ @sessions.new ], local: true) do |form| %>
+  <div>
+    <%= form.label :E_mail %><br>
+<input type="email" name="email" data-testid="login-signup-email" id="email" value="" autocomplete="email">
+
+  </div>
+  <div>
+    <%= form.label :password %><br>
+<input type="password" name="password" autocapitalize="none" spellcheck="false" id="password" value="">
+  </div>
+  <p>
+    <%= link_to "connexion", sessions_create_path %>
+    <div class="_14tkmhr">Vous n'avez pas de compte?
+    <%= link_to "signup", users_new_path, method: :get, class="_njl8u63" %>
+  </p>
+</div>

@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Custom CSS -->
   <% stylesheet_link_tag 'application' %>
-  <title>The Gossip Project - Team</title>
+  <title>The Gossip Project - Equipe</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="<%= root_path %>">The Gossip Project</a>
+  <a class="navbar-brand" href="<%= gossips_path %>">The Gossip Project</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,7 +22,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<%=root_path %>">Accueil</a>
+        <a class="nav-link" href="<%=gossips_path %>">Accueil</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<%=team_path %>">Team</a>
@@ -37,6 +37,9 @@
 <div class="container">
   <h1 class="display-4 text-center my-3">The Gossip Project</h1>
 
+  <h2 class="lead ml-3 my-4">Tu veux créer un nouveau potin ? </h2>
+
+  <a href="<%=new_gossip_path%>" class="btn btn-primary ml-5" type="button">Créer un nouveau potin </a>
   <div class="row">
     <% @gossips.each do |gossip| %>
       <div class="col-4 mb-3">
@@ -45,13 +48,15 @@
           <div class="card-body">
             <h5 class="card-title"><%=gossip.title %></h5>
             <p class="card-text"><%= truncate gossip.content, length: 30 %></p>
+<!--            Truncate : https://sql.sh/cours/truncate-table-->
             <p class="card-text">
               <small class="text-muted">
                 posté par <a href="<%= user_path(gossip.user.id) %>"><%=gossip.user.first_name %></a>
                 le <%=gossip.created_at.strftime("%d/%m/%Y %H:%I") %>
               </small>
             </p>
-            <a type="button" class="btn btn-primary btn-block" href="<%=gossip_path(gossip.id) %>">Voir le potin</a>
+            <a href="<%=gossip_path(gossip.id) %>" type="button" class="btn btn-primary btn-block" >Voir le potin</a>
+            <a href="<%=gossips_index_path%>" type="button" class="btn btn-danger" data-confirm="êtes vous sûr de vouloir supprimer ce potin?" data-method="DELETE">Supprimer potin </a>
           </div>
         </div>
       </div>
