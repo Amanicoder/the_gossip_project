@@ -9,11 +9,10 @@ Créer des potins
 Modifier et supprimer des potins
 
 
-Instruction :
-bundle install
-rails s
+Instructions =>
+1/bundle install 2/rails s
 
-Si problème :
+Si problème =>
 rake db:drop db:create db:migrate
 
 ou
